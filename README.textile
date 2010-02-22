@@ -1,5 +1,20 @@
-=== Noesis
+h2. Noesis
 
 Noesis is a course-management system that I'm actively developing for managing courses. 
+
+
+h2. Current Status
+
+I am in the process of migrating the code from *old* Rails 1.1.x standards to 2.3.x standards. I started this *years* ago and am just now getting back to finishing a lot of features I've learned I need over the years. 
+
+h2. Plans
+
+Things not yet implemented, but being cooked up:
+
+* Support for S5 or LaTeX beamer slideshow creation in the system (with exporting to PDF)
+* Advanced grade import / export features (Moodle, Sakai, WebCT, etc) 
+* Better gradebook features
+* Payment system (for offering private courses)
+* ... anything else that comes to mind as I work on it.
 
 

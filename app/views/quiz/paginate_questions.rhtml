@@ -1,0 +1,22 @@
+<div id="questions">
+<% unless @questions.nil? or @questions.empty? %>
+  <% for question in @questions %>
+  	<%= question.text %><br/>
+  <% end %>
+<% end %>
+</div>
+  <hr/>
+  <%= link_to_remote(h('< Previous'), 
+         :update => 'questions', 
+         :url => { :page => @question_pages.current.previous, :quiz => @quiz }) %> 
+-
+<%= link_to_remote(h('Next >'), 
+         :update => 'questions', 
+         :url => { :page => @question_pages.current.next, :quiz => @quiz }) %>
+</div>
+
+
+	Page:
+	<% @questionpages.each do |@page| %>
+	<a href="/quiz/show/<%=@quiz.id%>?page=<%=@page.number%>"><%= @page.number %></a>&nbsp;
+	<% end %>

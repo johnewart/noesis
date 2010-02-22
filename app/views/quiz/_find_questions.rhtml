@@ -1,0 +1,10 @@
+<b>Search Results</b>
+<ul>
+<% for question in @questions %>
+<li><%= link_to_remote( question.text, 
+                        :update => 'quizquestions', 
+						:options => { :position => :after },
+						:url => { :action => :add_question, :question => question.id, :quiz => @quiz } ) %></li>
+<% end %>
+</ul>
+

@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <title>Quiz index</title>
+  </head>
+
+  <body>
+      <table>
+          <% @quizzes.each do |@quiz| %>
+          <tr>
+              <td><%= @quiz.name %></td>
+          </tr>
+          <% end %>
+      </table>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<% form_tag  :action => 'update', :id => @question do %>
+  <%= render :partial => "form" %>
+  <%= submit_tag "Update" %>
+<% end %>
+
+<b>Answers</b>
+<%= render :partial => "answer_list" %>
+
+<h3>Add Answer</h3>
+<% form_remote_tag(:update => "answers",
+                    :url => { :action => :add_answer, :question => @question },
+                    :position => "bottom") do %>
+<table style="border:0">
+	<tr>
+		<td valign="top" align="right">Answer</td>
+		<td><%= text_area_tag :answertext, nil, :rows => 4, :cols => 20 %>
+	</tr>
+	<tr>
+		<td valign="top" align="right">Value</td>
+		<td><%= text_field_tag :answervalue %></td>
+	</tr>
+</table>
+	<%= submit_tag "Add Answer" %>
+<% end %>
+
+
+<%= link_to 'Show', :action => 'show', :id => @question %> |
+<%= link_to 'Back', :action => 'list' %>

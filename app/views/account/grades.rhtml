@@ -1,0 +1,69 @@
+<% 
+ @currentcourses.each do |course|
+	 assignmentpoints = 0
+	 assignmentpossible = 0
+	
+%>
+	<h2><%= course.name %></h2>
+	<% if course.assignments.length > 0 %>
+	<h3>Assignments</h3>
+	<table class="list">
+		<tr>
+			<th>Assignment</th>
+			<th>Score</th>
+			<th>Possible</th>
+			<th>Percent</th>
+		</tr>
+				
+		</tr>
+	<%	course.assignments.each do |assignment| 
+			assignmentpossible += assignment.points
+			 
+			submission = assignment.user_submission(@user.id)
+			if(submission != nil)
+				score = submission.score
+			else 
+				score = 0.0
+			end
+			
+			assignmentpoints += score
+		%>
+	    <tr>
+	        <td>
+	            <%= assignment.name %>
+	        </td>
+	        <td align="center">
+				<%= score %>
+			</td>
+			<td align="center">
+				<%= assignment.points %>
+			</td>
+			<td align="center">
+				<%= score / assignment.points * 100 %>% 
+			</td>
+	    </tr>
+		<% end %>
+		<tr>
+			<td> <b>Total</b></td> 
+			<td align="center"><b><%= assignmentpoints %></b></td>
+			<td align="center"><b><%= assignmentpossible %></b></td>
+			<td align="center"><b><%= assignmentpoints / assignmentpossible * 100 %>%</b></td>
+		</tr>
+	</table>	
+		
+	<% end	%>
+	
+	<h3>Quizzes</h3>
+	<table class="list">
+	<% course.quizzes.each do |quiz| %>
+	    <tr>
+	        <td>
+	            <%= quiz.name %>
+	        </td>
+	        <td>
+			</td>
+	    </tr>
+	<% end %>
+	</table>	
+	
+<% end %>

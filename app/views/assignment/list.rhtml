@@ -1,0 +1,33 @@
+<h2>Assignments</h2>
+<table class="list">
+	<% for assignment in @assignments %>
+  	<tr>
+		<% if assignment.past_due? %>		
+			<td class="text ghost">
+		<% else %>
+			<td class="text">
+		<% end %>
+			<%= link_to assignment.name, :action => 'show', :id => assignment %> &raquo; 
+			<span style="font-size: .8em">
+				Due <%= assignment.close_date %>
+				<% if @user.admin? %>
+				<b><i>[<%= assignment.submissions.length %> submissions ]</b></i>
+				<% end %>
+			</span>
+		</td> 
+		<td class="admin">
+			<% if @user.admin? %>
+			<%= link_to 'Submissions', :controller => 'submission', :action => 'list', :assignment => assignment.id %> 
+			<%= link_to 'Edit', :action => 'edit', :id => assignment %> 
+			<%= link_to 'Delete', {:action => 'destroy', :id => assignment}, :confirm => "Are you sure?" %>
+			<% end %>
+		</td>
+  	</tr>
+	<% end %>
+</table>
+
+<div class="linkbar">
+<% if @user.admin? %>
+<%= link_to 'New assignment', :action => 'new' %>
+<% end %>
+</div>

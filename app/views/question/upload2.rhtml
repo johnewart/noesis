@@ -1,0 +1,20 @@
+<p>Create an effect on beginning of the upload, send a custom message when simulating
+     some extra processing and redirect to a different page at the end of the upload.</p>
+
+  <%= form_tag_with_upload_progress({:action => 'upload'}, {
+     :begin => "new Effect.Appear('status')",
+	 :update => 'status',
+     :finish => "$('message').innerHTML = arguments[0]", 
+ 	 :multipart => true})%>  
+     
+  <%= file_field 'document', 'file' %>     
+  <%= submit_tag 'Upload' %>
+  <% end %>       
+  
+  <div id="status">
+    Status: <%= upload_status_tag %>  
+	   <%= @message %>
+  </div>
+
+  <div id="message"><%= @message %></div>
+

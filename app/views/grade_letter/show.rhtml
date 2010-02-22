@@ -1,0 +1,21 @@
+
+<h2><%= @forum.title %></h2>
+
+<table id="topics" class="list">
+    <% @forum.topics.each do |topic| %>
+    <tr>
+		<td class="icons">
+			<%= link_to image_tag("/icons/go.png"), :action => 'show', :id => topic, :controller => 'topic' %> 
+			<%= link_to image_tag("/icons/edit.png"), :action => 'edit', :id => topic, :controller => 'topic' %> 
+			<%= link_to image_tag("/icons/delete.png"), {:action => 'destroy', :id => topic, :controller => 'topic'}, :confirm => "Are you sure?" %>
+		</td>
+    	<td class="text"><%= topic.title %></td>
+    </tr>
+    <% end %>
+</table>
+
+<div class="linkbar">
+	<%= link_to "New Topic", :action => 'new', :controller => 'topic', :forum => @forum %> |
+	<%= link_to 'Edit', :action => 'edit', :id => @forum %> |
+	<%= link_to 'Back', :action => 'list' %>
+</div>

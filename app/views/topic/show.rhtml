@@ -1,0 +1,36 @@
+
+<h2><i><%= @topic.forum.title %></i> &raquo; <%= @topic.title %></h2>
+
+<p/>	
+
+<% @topic.posts.each do |post| %>
+<table id="post_<%= post.id %>" class="topiclist">
+    <tr>
+		<td class="avatar" rowspan="2">
+			<img src="/account/avatar/<%= post.user.id %>"/><br/>
+			<span style="font-size: .7em"><a href="mailto:<%= post.user.email %>"><%= post.user.fullname %></a></span><br/>
+		</td>
+		<td class="timestamp"">
+			<%= post.timestamp.strftime("%A, %B %d, %I:%M %p") %>
+		</td>
+	</tr>
+	<tr>
+    	<td class="text">
+			<%= textilize(post.body) %>
+			<div class="linkbar">
+				<% if @user.admin? or post.user == @user %>
+					<%= link_to 'Delete', {:action => 'destroy', :controller => 'post', :id => post}, :confirm => "Are you sure you want to remove this posting?" %> |				
+				<% end %>
+				<%= link_to 'Report as Offensive', :action => 'report', :controller => 'post', :id => post %> 
+			</div>
+		</td>
+		
+    </tr>
+</table>
+<% end %>
+
+<div class="linkbar">
+	<%= link_to 'Post New Reply', :action => 'new', :topic => @topic, :controller => 'post' %> |
+	<%= link_to 'Edit', :action => 'edit', :id => @topic %> |
+	<%= link_to 'Back', :action => 'list' %>
+</div>

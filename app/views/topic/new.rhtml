@@ -1,0 +1,11 @@
+<h3>New topic in "<%= @forum.title %>"</h3>
+
+<% form_tag  :action => 'create' do %>
+  <%= render :partial => "form" %>           
+  <b>First post:</b><br/>
+  <%= text_area 'post', 'body' %><br/>
+  <%= hidden_field "forum", "id"%>
+  <%= submit_tag "Create" %>
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>

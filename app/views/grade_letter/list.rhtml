@@ -1,0 +1,37 @@
+<h2>Grade Letters for <%= session[:course].name %></h2>
+<table class='list' id="grades">
+	<% @grades.each do |grade| %>
+	<tr>
+		<td class="icons">
+			<%= link_to image_tag("/icons/edit.png"), :action => 'edit', :id => grade %>
+			<%= link_to image_tag("/icons/delete.png"), {:action => 'destroy', :id => grade}, :confirm => "Are you sure?" %>
+		</td>
+		<td class="text">
+			<b><%= grade.letter %></b> ( <%= grade.top %>% - <%= grade.bottom %>% )
+		</td>
+	</tr>
+	<% end %>	
+</table>
+
+<%= form_remote_tag(:update => "grades",
+                    :url => { :action => :add_grade },
+                    :position => "bottom" ) %>
+<table style="border:0">
+	<tr>
+		<td valign="top" align="right">Letter</td>
+		<td><%= text_field_tag :gradeletter %>
+	</tr>
+	<tr>
+		<td valign="top" align="right">Top</td>
+		<td><%= text_field_tag :top %></td>
+	</tr>
+	<tr>
+		<td valign="top" align="right">Bottom</td>
+		<td><%= text_field_tag :bottom %></td>
+	</tr>
+</table>
+	<%= submit_tag "Add Grade Letter" %>
+<% end %>
+<p/>
+
+<div class="linkbar"><a href="/grade_letter/new">New Grade Letter</a></div>

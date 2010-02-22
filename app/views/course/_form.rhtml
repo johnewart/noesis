@@ -1,0 +1,38 @@
+<%= error_messages_for 'course' %>
+
+<!--[form:course]-->
+<p><label for="course_name"><h4>Name</h4></label>
+<%= text_field 'course', 'name' %></p>
+
+<p><label for="course_description"><h4>Description</h4></label>
+<%= text_area 'course', 'description' %></p>
+
+<p>
+<label for="course_start_date"><h4>Start Date</h4></label>
+<%= calendar 'course', 'start_date',
+        { :class => 'date',
+          :field_title => 'Start Date',
+          :button_title => 'Show calendar' },
+        { :firstDay => 1,
+          :range => [2005, 2010],
+          :step => 1,
+          :showOthers => true,
+          :cache => false }
+ %>
+<br/>
+</p>
+
+<p><label for="course_end_date"><h4>End Date</h4></label>
+<%= calendar 'course', 'end_date',
+        { :class => 'date',
+          :field_title => 'End Date',
+          :button_title => 'Show calendar' },
+        { :firstDay => 1,
+          :range => [2005, 2010],
+          :step => 1,
+          :showOthers => true,
+          :cache => false }
+ %>
+</p>
+<!--[eoform:course]-->
+

@@ -1,0 +1,55 @@
+<!--[form:assignment]-->
+	<h3 class="blue">Your Submission:</h3>
+	
+	<% if(@submissions != nil and @submissions.count > 0) %>
+	Last submitted: <%= @submissions[-1].submitted %><p/>
+	<% end %>
+
+	<% if @assignment.text? %>
+		<h3>Preview</h3>
+		<div id="preview">
+		<%= textilize(@submission.text) %>
+		</div>
+		<p/>
+		<%= text_area 'submission', 'text', :rows => 20, :cols => 70 %>
+		<div style="text-align: right; width: 100%">
+		<a href='#' onclick=><a href="#" onclick="Element.toggle('redcloth'); return false;">Toggle Text Reference</a>
+		</div>
+		<%= render :partial => "layouts/redcloth" %>
+	  	<%= observe_field(	"submission_text",
+						   	:frequency => 10,
+						 	:update => "preview",
+							:url => { :action => :preview },
+							:with => "'text=' + value ",
+							:postion => "top")	%>		
+	<%  else %>
+		<% if(@submissions != nil) %>
+		<h3>Currently submitted files</h3>
+		<table class="list">           
+		 <tr>
+		   <th>File</th>
+		   <th>Uploaded</th>
+		   <th>Action</th>
+		 </tr>   
+		 <% @submissions.each do |s| %>
+		   <tr>    
+			  <td style='font-size: .7em;' width='40%'>
+				<%= s.file_name %>
+			  </td>			                                                   
+			  <td class='admin'>
+			    <%= s.submitted.strftime("%b %d %Y @ %I:%M %p") %>
+			  </td>
+		      <td class="admin"> 
+			    <%= link_to 'Remove', :controller => 'submission', :action => 'destroy', :id => s.id %> 
+			    <%= link_to 'Download', :controller => 'submission', :action => 'download', :id => s.id %>
+			  </td>  
+			</tr>
+		  <% end %>
+		<% end %>
+		</table> 
+		
+		<p/>
+		<b>Upload an additional file:</b> <%= file_field "submission", "attachment" %>
+	<%  end %>
+
+<!--[eoform:assignment]-->

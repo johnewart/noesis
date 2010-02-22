@@ -1,0 +1,21 @@
+<h2>Forums</h2>
+<table class='list'>
+	<% @forums.each do |forum| %>
+	<tr>
+		<td class="text">
+			<i><%= link_to forum.title, :action => 'show', :id => forum %></i> <br/>
+			<span style="font-size: .8em"><%= forum.description %></span>
+		</td>
+		<td class="admin">
+			<% if @user.admin? %>
+			<%= link_to 'Edit', :action => 'edit', :id => forum %> 
+			<%= link_to 'Delete', {:action => 'destroy', :id => forum}, :confirm => "Are you sure?" %>
+			<% end %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<p/>
+
+<div class="linkbar"><a href="/forum/new">New forum</a></div>

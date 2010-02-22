@@ -1,0 +1,31 @@
+<h2><%= @submission.assignment.name %> <span class="blue"><%= @submission.user.fullname %></span></h2>
+<p>
+	
+	<% if @submission.text? %>
+		<%=	textilize(@submission.text) %>
+	<% else %>
+		Currently submitted file: <a href='/submission/download/<%= @submission.id %>'><%= @submission.file_name %></a> (<%= @submission.file_type %>)<br/>
+	<% end %>		
+</p>
+
+<h2>Grading</h2>
+
+<%= error_messages_for :submission %><br/>
+
+<% form_for  :action => 'grade', :id => @submission %>
+	<table class="box">
+		<tr>
+    		<td class="left"><label for="assignment_name"><b>Points</b></label></td>
+    		<td class="right">
+			  <%= text_field "submission", "score" %> / <%= @submission.assignment.points %>
+			</td>
+		</tr>
+		<tr>
+    		<td class="left"><b>Comments</b></label></td>
+    		<td class="right"><%= text_area 'submission', 'comments', 'rows' => 15, 'cols' => 50 %></td>
+		</tr>
+	</table>
+  	<%= submit_tag "Grade" %>
+<% end %>
+
+

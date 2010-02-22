@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <title>Course index</title>
+  </head>
+
+  <body>
+      <h3>Welcome <%= @user.login %></h3>
+      Available courses:
+      <table>
+          <% @courses.each do |@course| %>
+          <tr>
+              <td><%= @course.name %></td>
+              <td><a href="/course/signup/<%= @course.id %>">Sign up!</a></td>
+              <td><a href="/course/setactive/<%= @course.id %>">Set Active</a></td>
+          </tr>
+          <% end %>
+      </table>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+<tr>
+	<td><i><%= @answer.text %></i></td>
+	<td><%= @answer.value * 100 %>%</td>
+	<td><%= link_to("Remove",
+            { :action => "remove_answer", :answer => @answer.id, :question => @question },
+            :confirm => "Are you sure you want to delete this answer: #{@answer.text}") %></td>
+</tr>

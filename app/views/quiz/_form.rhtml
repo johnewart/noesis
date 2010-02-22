@@ -1,0 +1,35 @@
+<%= error_messages_for 'quiz' %>
+
+<!--[form:quiz]-->
+<p><label for="quiz_name"><b>Name</b></label>
+<%= text_field 'quiz', 'name' %></p>
+
+<p><label for="quiz_timelimit"><b>Time Limit</b></label>
+<%= text_field 'quiz', 'timelimit' %></p>
+
+<p><label for="quiz_points"><b>Point Value</b></label>
+<%= text_field 'quiz', 'points' %></p>
+
+<p><label for="quiz_start_time"><b>Start Time</b></label>
+<%= datetime_select 'quiz', 'start_time' %></p>
+
+<p><label for="quiz_end_time"><b>End Time</b></label>
+<%= datetime_select 'quiz', 'end_time' %></p>
+
+<label for="quiz_date"><b>Date</b></label>
+<%= calendar 'quiz', 'date',
+        { :class => 'date',
+          :field_title => 'Quiz Date',
+          :button_title => 'Show calendar' },
+        { :firstDay => 1,
+          :range => [2005, 2010],
+          :step => 1,
+          :showOthers => true,
+          :cache => false }
+ %>
+<br/>
+</p>
+</p>
+
+<!--[eoform:quiz]-->
+

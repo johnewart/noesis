@@ -1,0 +1,42 @@
+<% if flash and flash['message'] %>
+  <h3><%= flash['message'] %></h3>
+<% end %>
+
+<h2>Courses I'm Enrolled In</h2>
+
+<table class="list">
+
+<% @currentcourses.each do |@course| %>
+    <tr>
+        <td>
+        <% if @course == session[:course]  %>
+            <b><%= @course.name %></b>
+        <% else %>
+            <%= @course.name %>
+        <% end %>
+        </td>
+        <td>
+        <% if @course == session[:course]  %>
+            --
+        <% else %>
+            <a href="/course/setactive/<%= @course.id %>">Set Active</a>
+        <% end %>
+        </td>
+        <td><a href="/course/view/<%= @course.id %>">View</a></td>
+    </tr>
+<% end %>
+</table>
+
+<h2>Available Courses</h2>
+<table>
+  <% @availablecourses.each do |@course| %>
+  <tr>
+      <td><%= @course.name %></td>
+      <td><a href="/course/signup/<%= @course.id %>">Sign up!</a></td>
+  </tr>
+  <% end %>
+</table>
+
+<div class="linkbar">
+<a href="/course/new">New course</a>
+</div>

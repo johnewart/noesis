@@ -1,0 +1,16 @@
+<h2>questions</h2>
+<table class='list'>
+	<% @questions.each do |q| %>
+	<tr>
+		<td class="text"><%= q.text %></td>
+		<td class="admin">
+			<%= link_to "Edit", :action => 'show', :id => q.id %>
+			<%= link_to "Delete", :action => 'destroy', :id => q.id %>
+		</td>
+	</tr>
+	<% end %>
+</table>
+
+<p/>
+
+<a href="/question/new">Create new question</a> | <a href="/question/upload">Upload Questions</a></div>

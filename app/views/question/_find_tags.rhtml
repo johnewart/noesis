@@ -1,0 +1,9 @@
+<ul>
+<% for tag in @tags %>
+<li><%= link_to_remote( tag.text, 
+                        :update => 'questiontags', 
+						:options => { :position => :after },
+						:url => { :action => :add_tag, :tag => tag.id, :question => @question } ) %></li>
+<% end %>
+</ul>
+

@@ -1,0 +1,29 @@
+<div style=" border-bottom: 1px dashed #888;">
+<h2 class="blue"><%= @assignment.course.name %> &raquo; <%= @assignment.name %></h2>
+<p>
+	<%= textilize(@assignment.description) %>
+</p>
+
+<% if @assignment.still_open? %>
+	<b>Due:</b> <%= @assignment.close_date.strftime("%A, %B %d") %> (<%= @assignment.days_left %> days from today)<br/>
+<% else %>
+	<b>Assignment is past due!</b>
+<% end %>
+<p/>
+</div>
+
+<% if @assignment.still_open? %>
+	<% form_tag({:action => 'submit', :id => @assignment}, :multipart => true) do %>
+	  <%= render :partial => "submission" %>
+	  <p/>
+	  <%= submit_tag "Submit" %>
+	<% end %>
+<% end %>
+
+<div class="linkbar">
+<a href="#" onclick="Element.toggle('redcloth'); return false;">Toggle Text Reference</a>
+<% if @user.admin? %>|
+<%= link_to 'Edit', :action => 'edit', :id => @assignment %> |
+<%= link_to 'Back', :action => 'list' %>
+<% end %>
+</div>

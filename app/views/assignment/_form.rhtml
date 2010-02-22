@@ -1,0 +1,63 @@
+<%= error_messages_for 'assignment' %>
+
+<!--[form:assignment]-->
+<table class="box">
+<tr>
+    <td class="left"><label for="assignment_name"><b>Name</b></label></td>
+    <td class="right"><%= text_field 'assignment', 'name', 'size' => 40  %></td>
+</tr>
+<tr>
+    <td class="left"><label for="assignment_description"><b>Description</b></label></td>
+    <td class="right"><%= text_area 'assignment', 'description', 'rows' => 24, 'cols' => 60 %></td>
+</tr>
+<tr>
+    <td class="left"><label for="assignment_points"><b>Points</b></label></td>
+    <td class="right"><%= text_field 'assignment', 'points' %></td>
+</tr>
+<tr>    
+    <td class="left"><label for="assignment_allowlate"><b>Allow Late Submissions?</b></label></td>
+    <td class="right">
+        <%= radio_button 'assignment', 'allowlate', 'T' %> Yes<br/>
+        <%= radio_button 'assignment', 'allowlate', 'F' %> No<br/>
+    </td>
+</tr>
+<tr>
+    <td class="left"><label for="assignment_open_date"><b>Date Open</b></label></td>
+    <td class="right">
+        <%= calendar 'assignment', 'open_date',
+            { :class => 'date',
+              :field_title => 'Date Open',
+              :button_title => 'Show calendar' },
+            { :firstDay => 1,
+              :range => [2005, 2010],
+              :step => 1,
+              :showOthers => true,
+              :cache => false }
+        %>
+    </td>
+</tr>
+<tr>
+    <td class="left"><label for="assignment_close_date"><b>Close Date</b></label></td>
+    <td class="right">
+        <%= calendar 'assignment', 'close_date',
+            {   :class => 'date',
+                :field_title => 'Close Date',
+                :button_title => 'Show calendar' },
+            {   :firstDay => 1,
+                :range => [2005, 2010],
+                :step => 1,
+                :showOthers => true,
+                :cache => false }
+        %>
+    </td>
+</tr>
+<tr>
+    <td class="left"><b>Assignment Type</b></td>
+    <td class="right">
+        <%= radio_button("assignment", "type", "FileAssignment") %> Uploaded File<br/>
+        <%= radio_button("assignment", "type", "TextAssignment")  %> Text Response<br/>
+    </td>
+</tr>
+</table>
+<!--[eoform:assignment]-->
+

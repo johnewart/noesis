@@ -1,0 +1,27 @@
+<b>Tags</b>
+<div id="questiontags">
+   <ul>
+   <% @question.tags.each do |tag| %>
+    <li>
+    	<%= tag.label %> -- <%= link_to("Remove", { :action => "remove_tag", :tag => tag.id, :question => @question } ) %>
+    </li>
+   <% end %>
+   </ul>
+</div>
+
+<% form_remote_tag(:update => "questiontags",
+                    :url => { :action => :add_and_create_tags, :question => @question },
+                    :position => "bottom" ) do %>
+
+    <%= text_field_tag :tagtext %>
+	<%= submit_tag "Add New Tag" %>
+	<%= observe_field(	:tagtext,
+					   	:frequency => 2,
+					 	:update => "search_hits",
+						:url => { :action => :find_tags },
+						:with => "'tagtext=' + value + '&question=" + @question.id.to_s + "'",
+						:postion => "top")	%>
+<% end %>
+<div id="search_hits"></div>
+
+

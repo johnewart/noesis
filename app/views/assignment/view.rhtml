@@ -1,0 +1,9 @@
+<h2><%= @assignment.name %></h2>
+<p>
+<%= @assignment.description %>
+</p>
+
+Assignment due: <%= @assignment.due %><br/>
+
+<%= link_to 'Edit', :action => 'edit', :id => @assignment %> |
+<%= link_to 'Back', :action => 'list' %>

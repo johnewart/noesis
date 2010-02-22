@@ -1,0 +1,11 @@
+<h2><%= @quiz.name %></h2>
+
+<h3>Submissions</h3>
+
+<div id="submissions">
+	<ul>
+	<% @submissions.each do |s| %>
+		<li><%= s.user.fullname %> -- <%= s.open %> -- <%= s.close %></li>
+	<% end %>
+	</ul>
+</div>

@@ -1,0 +1,23 @@
+<form id="quiz">
+	<ul>
+	<% @questions.each do |question| %>
+	    <li><%= question.text %></li>
+		<ul>
+		<% question.answers.each do |answer| %>
+			<li><%= radio_button("question", question.id.to_s, answer.id) %><%= answer.text %></li>
+		<% end%>
+		</ul>
+	<% end %>
+	</ul>
+</form>
+
+<%= observe_form("quiz", 
+				 :frequency => 2, 
+				 :url => { :action => "quiz_changed" },
+				 :with => "Form.serialize('quiz')") %>
+
+<div class="linkbar">
+			| <%= link_to 'Finish Quiz', {:action => 'submit', :id => @quiz}, :confirm => "Are you sure you're finished?" %>
+</div>
+
+

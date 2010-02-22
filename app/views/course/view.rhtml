@@ -1,0 +1,41 @@
+<h2>Welcome to <%= @course.name %></h2>
+
+Assignments:
+<table class="list">
+    <tr>
+        <th>Assignment</th>
+        <th>Date Available</th>
+        <th>Date Due</th>
+        <th>Points</th>
+    </tr>
+    <% if @assignments %>
+      <% @assignments.each do |@assignment| %>
+      <tr>
+          <td><a href="/assignment/show/<%=@assignment.id%>"><%= @assignment.name %></a></td>
+          <td><%= @assignment.open_date %></td>
+          <td><%= @assignment.close_date %></td>
+          <td><%= @assignment.points %></td>
+      </tr>
+    <% end %>
+   <% end %>
+</table>
+
+Roster:
+<table class="list">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Login</th>
+    </tr>
+    <% if @students %>
+      <% @students.each do |@student| %>
+      <tr>
+          <td><%= @student.lastname %>, <%= @student.firstname %></td>
+          <td><%= @student.email %></td>
+          <td><%= @student.login %></td>
+      </tr>
+    <% end %>
+   <% end %>
+</table>
+
+<a href="/course/list">Return to course listing</a>

@@ -1,0 +1,15 @@
+
+<b>Question:</b> <%= @question.text %>
+
+<p/>
+<b>Answers</b>
+<%= render :partial => "answer_list" %>
+
+
+<p/>
+<%= render :partial => "tag_list" %>
+
+<div class="linkbar">
+<%= link_to 'Edit', :action => 'edit', :id => @question %> |
+<%= link_to 'Back', :action => 'list' %>
+</div>

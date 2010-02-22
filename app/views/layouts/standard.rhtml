@@ -1,0 +1,91 @@
+<html>
+<head>
+    <title>Courseware</title>
+    <%= stylesheet_link_tag 'calendar-styles.css', 'site.css' %>
+    <%= javascript_include_tag 'calendar', 'calendar-en', 'calendar-setup' %>
+   	<%= javascript_include_tag "prototype" %>
+</head>
+<body>
+	<div id="container">
+		<div id="header"><span class='orange'>Course</span><span class='green'>Ware</span></div>
+		<div id="bar">
+			
+				<% if @user %>
+				Logged in as: <%= @user.fullname %>. 
+				<a href="/account/logout">Logout</a>
+				
+				<% else %>
+				<a href="/account/login">Login now</a>
+				<% end %>
+				
+		</div>
+		<div id="minibar">
+			<a href="/docs/redcloth.html" onclick="window.open(this.href,'new_window','height=400,width=600');return false;">Text Editing Guide</a>
+		</div>
+	    <div id="menu">
+		
+			<% if @user %>
+				<div id="activities" class="sideblock">
+					<div class="header">
+						<div class="title">
+							Personal
+						</div>
+					</div>
+					<div class="content">
+						<span class="menuheading"><a href="/account/summary">My Overview</a></span><br/>
+						<span class="menuheading"><a href="/account/edit">Edit Profile</a></span><br/>
+						<span class="menuheading"><a href="/course/list">Courses</a></span><br/>
+						<span class="menuheading"><a href="/account/grades">Grades</a></span><br/>
+					</div>
+				</div>
+			
+				<% @user.courses.each do |course| %>
+				<div id="currentcourse" class="sideblock">
+					<div class="header">
+						<div class="title">
+							<%= course.name %>
+						</div>
+					</div>
+					<div class="content">
+						<span class="menuheading"><%= link_to "View", :controller => 'course', :action => 'view', :id => course.id %></span><br/>
+						<span class="menuheading"><%= link_to "Calendar", :controller => "course", :action => "calendar", :id => course.id %></span><br/>
+						<span class="menuheading"><%= link_to "Assignments", :controller => 'assignment', :action => 'list', :course => course.id %></span><br/>					
+						<span class="menuheading"><%= link_to "Quizzes", :controller => 'quiz', :action => 'list', :course => course.id %></span><br/>					
+						<span class="menuheading"><%= link_to "Forums", :controller => 'forum', :action => 'list', :course => course.id %></span><br/>					
+					</div>
+				</div>
+				<% end %>
+	
+			
+				<% if @user.admin? %>
+				<div id="admin" class="sideblock">
+					<div class="header">
+						<div class="title">
+							Administration
+						</div>
+					</div>
+					<div class="content">
+						<span class="menuheading"><a href="/course/list">Courses</a></span><br/>
+						<span class="menuheading"><a href="/assignment/list">Assignments</a></span><br/>
+						<span class="menuheading"><a href="/quiz/list">Quizzes</a></span><br/>
+						<span class="menuheading"><a href="/question/list">Quiz Questions</a></span><br/>
+					</div>
+				</div>
+				<% end %>
+			<% end %>
+			
+		</div> <!-- /div#menu -->
+	
+	
+		<div id="content">
+			<% if session[:course] %>
+			<h1><a href="/course/view/<%=session[:course].id%>"><%= session[:course].name %></a></h1>
+			<% end %>
+			
+		    <%= @content_for_layout %>
+	    </div> <!-- /div#content -->
+	    
+		<div class="spacer" />
+	</div> <!-- /div#container -->
+</body>
+</html>

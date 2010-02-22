@@ -1,0 +1,39 @@
+<!--[form:user]-->
+<% form_tag({:action => 'update', :id => @user}, :multipart => true) do %>
+	<table>
+		<tr>
+			<td colspan="2">
+				<img src='/account/avatar/<%= @user.id %>'></img><br/>
+				<%= file_field "user", "avatar" %>
+			</td>
+		</tr>
+	    <tr>
+	        <td valign="top"><b>First Name</b></td>
+	        <td><%= text_field 'user', 'firstname' %></td>
+	    </tr>
+
+	    <tr>
+	        <td valign="top"><b>Last Name</b></td>
+	        <td><%= text_field 'user', 'lastname' %></td>
+	    </tr>
+	    <tr>
+	        <td valign="top"><b>Email Address</b></td>
+	        <td><%= text_field 'user', 'email' %></td>
+	    </tr>
+	    <tr>
+	        <td valign="top"><b>Password</b></td>
+	        <td><%= password_field 'user', 'password', :value => "" %></td>
+	    </tr>
+	    <tr>
+	        <td valign="top"><b>Password (again)</b></td>
+	        <td><%= password_field 'user', 'password_confirmation', :value => "" %></td>
+	    </tr>
+	</table>
+  	<%= submit_tag "Update" %>
+<% end %>
+
+<!--[eoform:user]-->
+
+
+
+

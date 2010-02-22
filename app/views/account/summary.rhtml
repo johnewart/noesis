@@ -1,0 +1,37 @@
+	<h2>Upcoming events</h2>
+	
+	<b>This week</b>
+	<ul>
+	<% @thisweek.each do |item| %>
+		<li><%= item.name %></li>
+	<% end %>
+	</ul>
+	
+	<b>Next week</b>
+	<ul>
+	<% @nextweek.each do |item| %>
+		<li><%= item.name %> </li>
+	<% end %>
+	</ul>
+
+	<b>Later on</b>
+	<ul>
+	<% @later.each do |item| %>
+		<li><%= item.name %></li>
+	<% end %>
+	</ul>
+
+	<b>Distant future</b>
+	<ul>
+	<% @distant.each do |item| %>
+		<li><%= item.name %> - <%= item.course.name %></li>
+	<% end %>
+	</ul>
+	<div id="courses" class="list">
+		<h2>My Courses</h2>
+		<ul>
+		<% @courses.each do |course| %>
+		    <li><a href="/course/view/<%= course.id %>"><%= course.name %></a></li>
+		<% end %>
+		</ul>
+	</div>

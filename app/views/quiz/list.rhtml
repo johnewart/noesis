@@ -1,0 +1,21 @@
+<h2>Quizzes</h2>
+<table class="list">
+<% @quizzes.each do |quiz| %>
+    <tr>
+		<td class="text">
+			<b><%= link_to quiz.name, :action => 'open', :id => quiz.id %></b> &raquo; <span style="font-size: .8em"><%= quiz.date.strftime("%A, %B %d %Y") %> (Coming up in: <%= quiz.weeks_until %>)</span>
+		</td>
+		<td class="admin">
+			<% if @user.admin? %>
+			<%= link_to 'Submissions', :action => 'submissions', :id => quiz.id %>
+			<%= link_to 'Edit', :action => 'edit', :id => quiz %> 
+			<%= link_to 'Delete', {:action => 'destroy', :id => quiz}, :confirm => "Are you sure?" %>
+			<% end %>
+		</td>
+		
+	</tr>
+<% end %>
+</table>
+
+
+<div class="linkbar"><a href="/quiz/new">New quiz</a></div>

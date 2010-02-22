@@ -1,0 +1,22 @@
+
+<h2><%= @forum.title %></h2>
+
+<table id="topics" class="list">
+    <% @forum.topics.each do |topic| %>
+    <tr>
+    	<td class="text"><%= link_to topic.title, :action => 'show', :id => topic, :controller => 'topic' %> - <span style="font-style: italic; font-size: .8em;"><%= topic.posts.count %> posts, started by <%= topic.posts[0].user.fullname %> on <%= topic.posts[0].timestamp.strftime("%A, %B %d, %I:%M %p") %></span></td>
+		<td class="admin">
+			<% if @user.admin? %>
+			<%= link_to 'Edit', :action => 'edit', :id => topic, :controller => 'topic' %> 
+			<%= link_to 'Delete', {:action => 'destroy', :id => topic, :controller => 'topic'}, :confirm => "Are you sure?" %>
+			<% end %>
+		</td>
+    </tr>
+    <% end %>
+</table>
+
+<div class="linkbar">
+	<%= link_to "New Topic", :action => 'new', :controller => 'topic', :forum => @forum %> |
+	<%= link_to 'Edit', :action => 'edit', :id => @forum %> |
+	<%= link_to 'Back', :action => 'list' %>
+</div>

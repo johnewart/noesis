@@ -1,0 +1,9 @@
+<% form_for  :action => 'update', :id => @grade %>
+  <%= render :partial => "form" %>
+  <%= submit_tag "Update" %>
+<% end %>
+
+
+
+<%= link_to 'Show', :action => 'show', :id => @grade %> |
+<%= link_to 'Back', :action => 'list' %>

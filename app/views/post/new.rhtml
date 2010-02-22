@@ -1,0 +1,9 @@
+<h3>New posting in "<%= @topic.title %>"</h3>
+
+<% form_tag  :action => 'create' do %>
+  <%= render :partial => "form" %>
+  <%= hidden_field "topic", "id"%>
+  <%= submit_tag "Post Message" %>
+<% end %>
+
+<%= link_to 'Back', :action => 'list' %>

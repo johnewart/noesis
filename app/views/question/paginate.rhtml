@@ -1,0 +1,6 @@
+<div class="linkbar">
+		Page:
+<% @questionpages.each do |p| %>
+	<a href="/question/list?page=<%=@page.number%>"><%= p.number %></a>&nbsp;
+<% end %>
+|

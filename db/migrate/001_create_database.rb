@@ -80,7 +80,7 @@ class CreateDatabase < ActiveRecord::Migration
 	    t.string "lastname",  :limit => 30
 	    t.binary "file", :null => true
 	    t.string "file_name", :null => true
-      t.string "file_type", :null => true
+      	    t.string "file_type", :null => true
 	  end
 
 	  add_index "users", ["email"], :name => "email", :unique => true
@@ -100,6 +100,7 @@ class CreateDatabase < ActiveRecord::Migration
 	    t.timestamp "timestamp", :null => false
 	    t.float "score", :default => 0.0
 	  end
+      end
   end
 
   def self.down
